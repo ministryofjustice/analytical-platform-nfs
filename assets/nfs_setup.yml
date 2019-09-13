@@ -1,0 +1,36 @@
+- name: Create NFS Server
+  hosts: localhost
+  connection: local
+  gather_facts: True
+  become: True
+  vars:
+      app: NFS
+  tasks:
+    - ec2_metadata_facts:
+      register: ec2_metadata
+
+    - name: Volume Attachments
+      ec2_vol:
+        instance: "{{ ansible_ec2_instance_identity_document_instanceid }}"
+        id: "{{ ebs_volume_id }}"
+        region: "{{ ansible_ec2_instance_identity_document_region }}"
+      register: blockdevice
+
+    - name: Create filesystem
+      filesystem:
+        fstype: ext4
+        dev: "{{blockdevice.device}}"
+        force: no
+        resizefs: yes
+
+    - name: Mount the volume
+      mount:
+        path: /users/home
+        src: "{{blockdevice.device}}"
+        state: mounted
+        fstype: ext4
+
+    - name: Add New server to /etc/exports
+      lineinfile:
+        path: /etc/exports
+        line: "/users/home *(rw,sync,no_root_squash)"
