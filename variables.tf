@@ -28,10 +28,6 @@ variable "ebs_volume_id" {
   description = "Existing EBS volume ID to use as NFS"
 }
 
-variable "region" {
-  default = "eu-west-1"
-}
-
 variable "private_cidr_blocks" {
   type        = "list"
   description = "CIDR blocks allowed to connect to the NFS server"
@@ -40,10 +36,6 @@ variable "private_cidr_blocks" {
 variable "storage_cidr_blocks" {
   type        = "list"
   description = "CIDR blocks to deploy NFS server and Load Balancer"
-}
-
-variable "zone_id" {
-  description = "Route 53 Hosted Zone ID"
 }
 
 variable "zone_name" {
