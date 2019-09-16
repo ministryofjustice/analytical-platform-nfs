@@ -34,3 +34,17 @@
       lineinfile:
         path: /etc/exports
         line: "/users/home *(rw,sync,no_root_squash)"
+
+    - name: Reload NFS configuration
+      service:
+        name: nfs-server
+        state: reloaded
+
+    - name: Update route53 record
+      route53:
+        state: present
+        zone: "{{ hosted_zone_name }}"
+        record: "nfs.{{ hosted_zone_name }}"
+        type: A
+        ttl: 60
+        value: "{{ ansible_ec2_instance_identity_document_privateip }}"

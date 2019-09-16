@@ -10,10 +10,9 @@ data "aws_iam_policy_document" "assume_role_policy" {
   }
 }
 
-data "aws_iam_policy_document" "ec2_policy" {
+data "aws_iam_policy_document" "nfs_server_policy" {
   statement {
-    sid = "1"
-
+    sid = "ec2_permissions"
     actions = [
       "ec2:CreateVolume",
       "ec2:DescribeVolumes",
@@ -21,9 +20,19 @@ data "aws_iam_policy_document" "ec2_policy" {
       "ec2:DetachVolume",
       "ec2:DeleteVolume",
     ]
-
     resources = [
-      "*",
+      "*"
+    ]
+  }
+
+  statement {
+    sid = "route53_permissions"
+    actions = [
+      "route53_ChangeResourceRecordSets",
+      "ListResourceRecordSets"
+    ]
+    resources = [
+      ""
     ]
   }
 }
@@ -36,7 +45,7 @@ resource "aws_iam_role" "nfs_server" {
 
 resource "aws_iam_role_policy" "ec2_policy_attachment" {
   name_prefix = "nfs-ec2-policy"
-  policy      = data.aws_iam_policy_document.ec2_policy.json
+  policy      = data.aws_iam_policy_document.nfs_server_policy.json
   role        = aws_iam_role.nfs_server.name
 }
 

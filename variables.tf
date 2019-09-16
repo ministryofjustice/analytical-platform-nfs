@@ -45,6 +45,10 @@ variable "zone_id" {
   description = "Route 53 Hosted Zone ID"
 }
 
+variable "zone_name" {
+  description = "Route 53 Hosted Zone Name"
+}
+
 variable "vpc_id" {
   description = "Existing vpc id (required for security groups)"
 }

@@ -63,6 +63,7 @@ resource "aws_launch_template" "nfs" {
 data "template_file" "user_data" {
   template = <<EOF
       echo 'test'
-      ansible-playbook ${var.ansible_provision_file} --extra-vars='ebs_volume_id=${var.ebs_volume_id}'
+      ansible-playbook ${var.ansible_provision_file} --extra-vars='ebs_volume_id=${var.ebs_volume_id} \
+                                                                   hosted_zone_name=${var.zone_name}'
   EOF
 }
