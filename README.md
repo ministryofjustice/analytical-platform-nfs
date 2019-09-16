@@ -31,3 +31,6 @@ module "nfs" {
 | key\_pair | The key pair name in AWS EC2 to be assigned to the NFS server | string | `""` | yes |
 | zone\_name | The Hosted Zone name to resolve nfs.zone_name  | string | `""` | yes |
 | ebs\_volume\_id | The EBS Volume ID to use for NFS Storage  | string | `""` | yes |
+| name | Variable used to name various resources within the module  | string | `"nfs"` | no |
+| instance\_type | EC2 instance type  | string | `"m5.large"` | no |
+| instance\_ami\_id | EC2 AMI ID  | string | `"ami-0bbc25e23a7640b9b"` | no |
