@@ -2,6 +2,7 @@
 variable "name" {
   default = "nfs"
 }
+
 variable "storage_subnet_ids" {
   description = "Existing subnet IDs to deploy NFS server to"
 }
