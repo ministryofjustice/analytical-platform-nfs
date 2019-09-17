@@ -33,11 +33,6 @@ variable "private_cidr_blocks" {
   description = "CIDR blocks allowed to connect to the NFS server"
 }
 
-variable "storage_cidr_blocks" {
-  type        = "list"
-  description = "CIDR blocks to deploy NFS server and Load Balancer"
-}
-
 variable "zone_name" {
   description = "Route 53 Hosted Zone Name"
 }
