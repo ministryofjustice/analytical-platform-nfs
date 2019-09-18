@@ -40,9 +40,8 @@ resource "aws_launch_template" "nfs" {
 
   network_interfaces {
     associate_public_ip_address = false
+    security_groups = [aws_security_group.ec2.id]
   }
-
-  vpc_security_group_ids = ["create-using-module-inputs"]
 
   tag_specifications {
     resource_type = "instance"
