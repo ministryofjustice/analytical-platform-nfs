@@ -61,8 +61,10 @@ resource "aws_launch_template" "nfs" {
 
 data "template_file" "user_data" {
   template = <<EOF
-      echo 'test'
-      ansible-playbook ${var.ansible_provision_file} --extra-vars='ebs_volume_id=${var.ebs_volume_id} \
-                                                                   hosted_zone_name=${var.zone_name}'
+#!/usr/bin/env bash
+amazon-linux-extras install ansible2 -y
+wget https://raw.githubusercontent.com/ministryofjustice/analytical-platform-nfs/create-nfs-module/assets/nfs_setup.yml
+ansible-playbook nfs_setup.yml --extra-vars='ebs_volume_id=${var.ebs_volume_id} \
+                                                              hosted_zone_name=${var.zone_name}'
   EOF
 }
