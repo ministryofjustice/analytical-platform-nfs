@@ -12,7 +12,7 @@ data "aws_iam_policy_document" "assume_role_policy" {
 
 data "aws_iam_policy_document" "nfs_server_policy" {
   statement {
-    sid = "ec2_permissions"
+    sid = "ec2permissions"
     actions = [
       "ec2:CreateVolume",
       "ec2:DescribeVolumes",
@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "nfs_server_policy" {
   }
 
   statement {
-    sid = "route53_permissions"
+    sid = "route53permissions"
     actions = [
       "route53:ChangeResourceRecordSets",
       "route53:ListResourceRecordSets"
