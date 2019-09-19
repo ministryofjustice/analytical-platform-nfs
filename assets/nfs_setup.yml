@@ -43,6 +43,7 @@
     - name: Update route53 record
       route53:
         state: present
+        overwrite: yes
         zone: "{{ hosted_zone_name }}"
         record: "nfs.{{ hosted_zone_name }}"
         type: A
