@@ -14,6 +14,7 @@ data "aws_iam_policy_document" "nfs_server_policy" {
   statement {
     sid = "ec2permissions"
     actions = [
+      "ec2:DescribeInstances",
       "ec2:CreateVolume",
       "ec2:DescribeVolumes",
       "ec2:AttachVolume",
