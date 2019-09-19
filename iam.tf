@@ -30,7 +30,8 @@ data "aws_iam_policy_document" "nfs_server_policy" {
     sid = "route53permissions"
     actions = [
       "route53:ChangeResourceRecordSets",
-      "route53:ListResourceRecordSets"
+      "route53:List*",
+      "route53:Get*"
     ]
     resources = [
       "*"
