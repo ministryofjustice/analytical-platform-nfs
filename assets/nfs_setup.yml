@@ -25,7 +25,7 @@
 
     - name: Mount the volume
       mount:
-        path: /users/home
+        path: /users/homes
         src: "{{blockdevice.device}}"
         state: mounted
         fstype: ext4
@@ -33,7 +33,7 @@
     - name: Add New server to /etc/exports
       lineinfile:
         path: /etc/exports
-        line: "/users/home *(rw,sync,no_root_squash)"
+        line: "/users/homes *(rw,sync,no_root_squash)"
 
     - name: Reload NFS configuration
       service:
